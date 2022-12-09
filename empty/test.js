@@ -1,18 +1,5 @@
+const { greet, users } = require('./func');
 
-const user = {
-    firstname: 'Yaroslav',
-    surname: 'Gudz'
-};
+greet('Ola');
 
-let { firstname, surname } = user;
-
-console.log(firstname);
-console.log(surname);
-
-
-(function() {
-    let [ firstname, surname ] = [ 'Yarik', 'Gudz' ]
-
-    console.log(firstname);
-    console.log(surname);
-}())
+console.log(users);
