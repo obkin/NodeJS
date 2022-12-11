@@ -1,9 +1,9 @@
-const { stealRing, characters } = require('./characters.js');
+const a = 1;
 
-let myChars = characters;
-myChars = stealRing(myChars, 'Фродо');
-
-for (const character of characters) {
-    console.log(character);
+if (a > 0) {
+    const log = require('./characters.js');
+    log();
+} else {
+    console.log('a is less than 0');
 }
 

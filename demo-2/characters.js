@@ -1,16 +1,6 @@
-let characters = [
-    { name: 'Фродо', hasRing: false },
-    { name: 'Бильбо', hasRing: false }
-];
+console.log('Loaded - characters.js');
 
-function stealRing(characters, owner) {
-    return characters.map(character => {
-        if (character.name == owner) {
-            character.hasRing = true;
-        } else {
-            character.hasRing = false;
-        }
-    });
-}
+module.exports = function log() {
+    console.log('log');
+};
 
-module.exports = { characters, stealRing };
