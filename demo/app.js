@@ -1,5 +1,9 @@
-fs = require('fs');
+const EventEmitter = require('events');
 
-const data = fs.readFileSync('./data.txt');
-console.log(data.toString());
+const myEmitter = new EventEmitter();
 
+myEmitter.on('msg', (data) => {
+    console.log(`Отримав: ${data}`);
+});
+
+myEmitter.emit('msg', 'Привіт, як тебе звати?');
