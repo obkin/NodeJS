@@ -1,39 +1,57 @@
 const EventEmitter = require('events');
-
 const myEmitter = new EventEmitter();
-
-
-myEmitter.on('msg', (data) => {
-    console.log(`Отримав: ${data}`);
-});
-
-myEmitter.on('msg', (data) => {
-    console.log(data);
-});
-
-myEmitter.emit('msg', 'Привіт, як тебе звати?');
-
-myEmitter.once('once', () => {
-    console.log('Я визвався тільки один раз :)');
-});
-
-console.log(myEmitter.listeners('msg'));
-
-myEmitter.emit('once');
-myEmitter.emit('once');
-
-console.log(myEmitter.listenerCount('msg'));
-
-console.log(myEmitter.listenerCount('once'));
-
-
 
 /*
 
-console.log(myEmitter.getMaxListeners());
+async function myEvents() {
 
-myEmitter.setMaxListeners(1);
+    await myEmitter.on('msg', (data) => {
+        console.log(`Отримано: ${data}`)
+    });
+    
+    await myEmitter.prependListener('msg', (data) => {
+        console.log('We used prepend')
+    });
+    
+    
+    await myEmitter.emit('msg', 'Hi, Yan!');
+    
+    await myEmitter.off('msg', (data) => {
+        console.log(`Отримано: ${data}`)
+    });
 
-console.log(myEmitter.getMaxListeners());
+    await myEmitter.on('connected', () => {
+        console.log('DB was connected');
+    });
+    
+    await myEmitter.emit('connected');
+}
+
+myEvents();
+
+// myEmitter.setMaxListeners(3);
+// console.log('Max listeners: ' + myEmitter.getMaxListeners());
+// console.log('Current num of listeners: ' + myEmitter.listenerCount('msg'));
+
+// console.log(myEmitter.listeners('msg'));
+
+console.log(myEmitter.eventNames());
+
+myEmitter.on('error', (err) => {
+    console.log(`Сталась помилка: ${err.message}`);
+});
+
+myEmitter.emit('error', new Error('BOOOM!'));
+
 
 */
+
+const target = new EventTarget();
+
+const logTarget = () => {
+    console.log('Connected to target');
+};
+
+target.addEventListener('connected', logTarget);
+target.dispatchEvent(new Event('connected'));
+
