@@ -9,8 +9,56 @@
 
 
 
-function user(name) {
-    console.log(`Ім'я користувача - ${name}.`);
-}
+// function user(name) {
+//     console.log(`Ім'я користувача: ${name}`);
 
-setTimeout(user, 2000, 'Yarik');
+// }
+
+// setTimeout(user, 1500, 'Yarik');
+
+
+// const timerId = setTimeout(() => {
+//     console.log('BOOOM!'); 
+// }, 3000);
+
+// setTimeout(() => {
+//     clearTimeout(timerId);
+//     console.log('Was cleared.');
+// }, 1000);
+
+
+
+// const intervalId = setInterval(() => {
+//     console.log(performance.now());
+// }, 1000);
+
+
+// setTimeout(() => {
+//     clearInterval(intervalId);
+//     console.log('Очищено!');
+// }, 5055);
+
+
+
+
+// console.log('Перший');
+
+// setImmediate(() => {
+//     console.log('Другий');
+// });
+
+// console.log('Третій');
+
+
+
+const timerId = setTimeout(() => {
+    console.log('BOOOM!');
+}, 5000);
+
+timerId.unref();
+
+
+setImmediate(() => {
+    timerId.ref();
+});
+
