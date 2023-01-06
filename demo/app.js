@@ -1,24 +1,16 @@
-const EventEmitter = require('events');
-const myEmitter = new EventEmitter();
+// const start = performance.now();
+// console.log(`Час на підготовку: ${Math.floor(start)}мс`);
 
-myEmitter.on('connected', () => {
-    console.log('DB was connected.');
-});
-
-myEmitter.emit('connected');
-    console.log(myEmitter.listenerCount('connected'));
-    console.log(myEmitter.eventNames());
-
-myEmitter.removeAllListeners('connected');
-    console.log(myEmitter.listenerCount('connected'));
+// setTimeout(() => {
+//     console.log(`Повний час: ${Math.floor(performance.now())}мс`);
+//     console.log(`Час роботи таймера: ${Math.floor(performance.now() - start)}мс`);
+//     console.log('Пройшла 1 секунда.');
+// }, 1000);
 
 
-myEmitter.once('error', (err) => {
-    if (err) {
-        console.log(`ERROR: ${err.message}`);
-    } else {
-        console.log('Everything us OK!');
-    }
-});
 
-myEmitter.emit('error');
+function user(name) {
+    console.log(`Ім'я користувача - ${name}.`);
+}
+
+setTimeout(user, 2000, 'Yarik');
