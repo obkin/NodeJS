@@ -1,36 +1,20 @@
-const fs = require('fs');
+const a = 5;
 
-console.log('Init');
+function b() {
+    return c();
+}
 
-setTimeout(() => {
-    console.log(performance.now(), '- Timeout - 0sec');
+function c() {
+    return d();
+}
 
-    Promise.resolve().then(() => {
-        console.log('Promise2');
-    });
-    process.nextTick(() => console.log('nextTick2'));
-}, 100);
-
-setImmediate(() => {
-    console.log('Immediate');
-});
-
-fs.readFile(__filename, () => {
-    console.log('File readed');
-});
+function d() {
+    console.log(a);
+}
 
 setTimeout(() => {
-    for (let i = 0; i < 10_000_000_00; i++) {
+    console.log('Timeout');
+}, 1000);
 
-    }
-    console.log('done!');
-}, 0);
-
-Promise.resolve().then(() => {
-    console.log('Promise');
-});
-
-process.nextTick(() => console.log('nextTick'));
-
-console.log('Final');
+b();
 
