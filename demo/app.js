@@ -1,20 +1,9 @@
-const a = 5;
+const crypto = require('crypto');
+const start = performance.now();
 
-function b() {
-    return c();
+for (let i = 0; i < 50; i++) {
+    crypto.pbkdf2('test', 'salt', 100_000, 64, 'sha512', () => {
+        console.log(performance.now() - start);
+    });
 }
-
-function c() {
-    return d();
-}
-
-function d() {
-    console.log(a);
-}
-
-setTimeout(() => {
-    console.log('Timeout');
-}, 1000);
-
-b();
 
