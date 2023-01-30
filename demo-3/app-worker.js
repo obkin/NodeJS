@@ -1,4 +1,3 @@
-const factorial = require('./factorial');
 const { Worker } = require('worker_threads');
 
 const compute = (array) => {
@@ -24,21 +23,25 @@ const compute = (array) => {
     });
 };  
  
-const main = () => {
-    performance.mark('start');
+const main = async () => {
+    try {
+        performance.mark('start');
 
-    const result = [
-        compute([25, 20, 19, 48, 30, 50]),
-        compute([25, 20, 19, 48, 30, 50]),
-        compute([25, 20, 19, 48, 30, 50]),
-        compute([25, 20, 19, 48, 30, 50])
-    ];
-    console.log(result);
-
-    performance.mark('end');
-    performance.measure('main', 'start', 'end');
-    console.log(performance.getEntriesByName('main').pop());
-};
+        const result = await Promise.all([
+            compute([25, 20, 19, 48, 30, 50]),
+            compute([25, 20, 19, 48, 30, 50]),
+            compute([25, 20, 19, 48, 30, 50]),
+            compute([25, 20, 19, 48, 30, 50])
+        ]);
+        console.log(result);
+    
+        performance.mark('end');
+        performance.measure('main', 'start', 'end');
+        console.log(performance.getEntriesByName('main').pop());
+    } catch(e) {
+        console.error(`Error: ${e.message}.`);
+    }
+}; 
 
 main();
 
