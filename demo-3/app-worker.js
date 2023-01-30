@@ -43,5 +43,9 @@ const main = async () => {
     }
 }; 
 
+setTimeout(() => {
+    console.log('Timeout - 1sec.');
+}, 1000);
+
 main();
 

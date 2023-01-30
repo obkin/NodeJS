@@ -25,5 +25,9 @@ const main = () => {
     console.log(performance.getEntriesByName('main').pop());
 };
 
+setTimeout(() => {
+    console.log('Timeout - 1sec.');
+}, 1000);
+
 main();
 
