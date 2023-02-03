@@ -25,5 +25,9 @@ function main() {
     console.log(performance.getEntriesByName('main'));
 }
 
+setTimeout(() => {
+    console.log('Timeout - 2sec');
+}, 2000);
+
 main();
 
