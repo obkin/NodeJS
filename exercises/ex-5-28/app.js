@@ -4,10 +4,14 @@ const { fork } = require('child_process');
 
 const performanceObserver = new PerformanceObserver((items, observer) => {
     items.getEntries().forEach(entry => {
-        console.log(`${entry.name}: ${Math.floor(entry.duration)}мс`);
+        if (entry) {
+            console.log(`${entry.name}: ${Math.floor(entry.duration)}мс`);
+        } else {
+            performance.clearMarks();
+            performance.clearMeasures();
+            observer.disconnect();
+        }
     });
-
-    // observer.disconnect();
 });
 
 performanceObserver.observe({ entryTypes: ['measure'] });
