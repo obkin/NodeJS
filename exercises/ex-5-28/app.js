@@ -3,13 +3,11 @@ const { Worker } = require('worker_threads');
 const { fork } = require('child_process');
 
 const performanceObserver = new PerformanceObserver((items, observer) => {
-    console.log(items);
-
     items.getEntries().forEach(entry => {
         console.log(`${entry.name}: ${Math.floor(entry.duration)}мс`);
     });
 
-    observer.disconnect();
+    // observer.disconnect();
 });
 
 performanceObserver.observe({ entryTypes: ['measure'] });
@@ -44,8 +42,8 @@ const forkFunction = (array) => {
             resolve(msg);
         });
 
-        forkProcess.on('error', (msg) => {
-            reject(msg);
+        forkProcess.on('error', (err) => {
+            reject(err);
         });
     });
 };
